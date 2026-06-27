@@ -51,6 +51,21 @@ pandemic-legacy-tracker/
 3. Check git log (`git log --oneline -20`) for recent work.
 4. Ask the user what they want to tackle next.
 
+## Current status (as of 2026-06-27)
+**In progress: GitHub setup — Step 3 of 5 (authenticate with GitHub CLI)**
+
+Steps completed:
+- [x] Step 0: GitHub account created (personal, mattmanne@gmail.com)
+- [x] Step 1: Git identity set locally for this repo (Matt Manne / mattmanne@gmail.com — local only, not global)
+- [x] Step 2: GitHub CLI (`gh`) installed via winget
+
+Next step when resuming:
+- [ ] Step 3: Restart terminal, verify `gh --version` works, then run `gh auth login`
+- [ ] Step 4: Create GitHub repo and push (`gh repo create ...`)
+- [ ] Step 5: Enable GitHub Pages (deferred until app has an index.html)
+
+**Important:** Git identity is set at the project level only (`--local`). Do not change it to `--global` — user has separate HBS git account for other projects.
+
 ## Season 0 notes
 - Set in 1962, Cold War era.
 - Players are operatives, not doctors.
