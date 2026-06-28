@@ -69,9 +69,10 @@ describe('App shell — navigation', () => {
     expect(screen.getByText('Loading...')).toBeInTheDocument()
   })
 
-  it('shows characters placeholder on /characters route', () => {
+  it('shows characters page on /characters route', () => {
     renderAppWithPlayer('/characters')
-    expect(screen.getByText('Characters — coming soon')).toBeInTheDocument()
+    // CharactersPage renders Loading... while connecting to Firebase
+    expect(screen.getByText('Loading...')).toBeInTheDocument()
   })
 
   it('shows rules placeholder on /rules route', () => {

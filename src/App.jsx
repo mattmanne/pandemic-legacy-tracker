@@ -3,6 +3,7 @@ import { BookOpen, MapPin, Users, ScrollText, ChevronDown } from 'lucide-react'
 import { PlayerProvider, usePlayer } from './PlayerContext'
 import PlayerPicker from './PlayerPicker'
 import StatePage from './pages/StatePage'
+import CharactersPage from './pages/CharactersPage'
 
 const NAV_ITEMS = [
   { to: '/', label: 'Log', icon: ScrollText },
@@ -103,7 +104,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Placeholder title="Campaign Log" />} />
           <Route path="/state" element={<StatePage />} />
-          <Route path="/characters" element={<Placeholder title="Characters" />} />
+          <Route path="/characters" element={<CharactersPage />} />
           <Route path="/rules" element={<Placeholder title="Rules" />} />
         </Routes>
       </Shell>

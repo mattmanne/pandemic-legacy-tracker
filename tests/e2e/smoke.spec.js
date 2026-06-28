@@ -28,7 +28,7 @@ test('navigates to state page', async ({ page }) => {
 test('navigates to characters page', async ({ page }) => {
   await selectPlayer(page)
   await page.getByRole('link', { name: 'Characters' }).click()
-  await expect(page.getByText('Characters — coming soon')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Carlos' })).toBeVisible()
 })
 
 test('navigates to rules page', async ({ page }) => {
