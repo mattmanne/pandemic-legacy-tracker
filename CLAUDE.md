@@ -82,19 +82,19 @@ pandemic-legacy-tracker/
 4. Ask the user what they want to tackle next.
 
 ## Current status (as of 2026-06-28)
-**Phase 3 complete. Next: Phase 4 — Campaign Log.**
+**Phase 4 complete. Next: Phase 5 — Rules Reference.**
 
 ### Build phases
 - [x] Phase 0 — Scaffold (React + Vite + Firebase + Vitest + Playwright + Tailwind, dark theme, routing shell)
 - [x] Phase 1 — App shell & navigation (player picker, responsive layout, bottom nav / sidebar)
 - [x] Phase 2 — Campaign State Tracker (month, funding, outbreaks, cities, funded events, deck changes)
 - [x] Phase 3 — Character & Player Tracker (name, role, upgrades, scars, relationships — all live-synced)
-- [ ] **Phase 4 — Campaign Log** ← next
-- [ ] Phase 5 — Rules Reference
+- [x] Phase 4 — Campaign Log (log sessions with month/date/win-loss/notes; edit/delete; W/L summary)
+- [ ] **Phase 5 — Rules Reference** ← next
 
 ### Test suite
-- **76 unit tests** passing (Vitest + happy-dom)
-- **39 e2e tests** passing (Playwright — mobile Chrome, mobile Safari, tablet)
+- **97 unit tests** passing (Vitest + happy-dom)
+- **54 e2e tests** passing (Playwright — mobile Chrome, mobile Safari, tablet)
 
 ### Firebase setup — COMPLETE
 - [x] Firebase project created (with Google Analytics — fine)
