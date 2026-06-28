@@ -50,11 +50,23 @@ pandemic-legacy-tracker/
 │   ├── PlayerPicker.test.jsx
 │   ├── firebase.js         # Firebase init (reads from .env.local)
 │   ├── index.css           # Tailwind base + dark theme
-│   └── test-setup.js       # localStorage mock + jest-dom
+│   ├── test-setup.js       # localStorage mock + jest-dom
+│   ├── hooks/
+│   │   ├── useCampaignState.js      # Firestore hook — campaign state
+│   │   ├── useCampaignState.test.js
+│   │   ├── useCharacters.js         # Firestore hook — characters collection
+│   │   └── useCharacters.test.js
+│   └── pages/
+│       ├── StatePage.jsx            # Campaign State UI
+│       ├── StatePage.test.jsx
+│       ├── CharactersPage.jsx       # Character & Player Tracker UI
+│       └── CharactersPage.test.jsx
 └── tests/
     ├── README.md
     └── e2e/
-        └── smoke.spec.js   # Playwright smoke tests
+        ├── smoke.spec.js      # Navigation smoke tests
+        ├── state.spec.js      # State page e2e
+        └── characters.spec.js # Characters page e2e
 ```
 
 ## Conventions
@@ -70,19 +82,19 @@ pandemic-legacy-tracker/
 4. Ask the user what they want to tackle next.
 
 ## Current status (as of 2026-06-28)
-**In progress: Phase 2 — Campaign State Tracker. Blocked on Firebase setup.**
+**Phase 3 complete. Next: Phase 4 — Campaign Log.**
 
 ### Build phases
 - [x] Phase 0 — Scaffold (React + Vite + Firebase + Vitest + Playwright + Tailwind, dark theme, routing shell)
 - [x] Phase 1 — App shell & navigation (player picker, responsive layout, bottom nav / sidebar)
-- [ ] **Phase 2 — Campaign State Tracker** ← next
-- [ ] Phase 3 — Character & Player Tracker
-- [ ] Phase 4 — Campaign Log
+- [x] Phase 2 — Campaign State Tracker (month, funding, outbreaks, cities, funded events, deck changes)
+- [x] Phase 3 — Character & Player Tracker (name, role, upgrades, scars, relationships — all live-synced)
+- [ ] **Phase 4 — Campaign Log** ← next
 - [ ] Phase 5 — Rules Reference
 
 ### Test suite
-- **18 unit tests** passing (Vitest + happy-dom)
-- **15 e2e tests** passing (Playwright — mobile Chrome, mobile Safari, tablet)
+- **76 unit tests** passing (Vitest + happy-dom)
+- **39 e2e tests** passing (Playwright — mobile Chrome, mobile Safari, tablet)
 
 ### Firebase setup — COMPLETE
 - [x] Firebase project created (with Google Analytics — fine)
