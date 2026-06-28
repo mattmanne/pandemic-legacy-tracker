@@ -26,6 +26,10 @@ let mockHookReturn
 
 vi.mock('../hooks/useCampaignState', () => ({
   useCampaignState: () => mockHookReturn,
+  DEFAULT_STATE: {
+    month: 1, fundingTrack: 0, outbreakCount: 0,
+    fundedEvents: [], cities: {}, deckAdded: [], deckRemoved: [],
+  },
 }))
 
 function renderPage() {

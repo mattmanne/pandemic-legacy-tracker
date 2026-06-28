@@ -4,6 +4,7 @@ import { PlayerProvider, usePlayer } from './PlayerContext'
 import PlayerPicker from './PlayerPicker'
 import StatePage from './pages/StatePage'
 import CharactersPage from './pages/CharactersPage'
+import CampaignLogPage from './pages/CampaignLogPage'
 
 const NAV_ITEMS = [
   { to: '/', label: 'Log', icon: ScrollText },
@@ -102,7 +103,7 @@ export default function App() {
     <PlayerProvider>
       <Shell>
         <Routes>
-          <Route path="/" element={<Placeholder title="Campaign Log" />} />
+          <Route path="/" element={<CampaignLogPage />} />
           <Route path="/state" element={<StatePage />} />
           <Route path="/characters" element={<CharactersPage />} />
           <Route path="/rules" element={<Placeholder title="Rules" />} />

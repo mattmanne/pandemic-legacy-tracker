@@ -19,6 +19,11 @@ test('app loads and shows navigation after selecting a player', async ({ page })
   await expect(page.getByRole('link', { name: 'Rules' })).toBeVisible()
 })
 
+test('log page loads by default', async ({ page }) => {
+  await selectPlayer(page)
+  await expect(page.getByRole('button', { name: /add session/i })).toBeVisible()
+})
+
 test('navigates to state page', async ({ page }) => {
   await selectPlayer(page)
   await page.getByRole('link', { name: 'State' }).click()

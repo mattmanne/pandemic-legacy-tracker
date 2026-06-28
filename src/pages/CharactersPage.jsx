@@ -145,16 +145,19 @@ export default function CharactersPage() {
     updateCharacter, addUpgrade, removeUpgrade, addScar, removeScar, setRelationship,
   } = useCharacters()
 
-  if (loading) return <p className="p-4 text-gray-400">Loading...</p>
-  if (error) return <p className="p-4 text-red-400">Error loading characters.</p>
+  const display = characters ?? Object.fromEntries(
+    PLAYERS.map(p => [p.id, { playerName: p.name, characterName: '', role: '', upgrades: [], scars: [], relationships: {} }])
+  )
 
   return (
     <div className="p-4 space-y-4 max-w-2xl mx-auto">
+      {loading && <p className="text-gray-400 text-sm">Loading...</p>}
+      {error && <p className="text-red-400 text-sm">Error loading characters.</p>}
       {PLAYERS.map(p => (
         <CharacterCard
           key={p.id}
           player={p}
-          character={characters[p.id]}
+          character={display[p.id]}
           allPlayers={PLAYERS}
           onUpdate={(field, value) => updateCharacter(p.id, field, value)}
           onAddUpgrade={u => addUpgrade(p.id, u)}

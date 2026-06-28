@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Plus, X } from 'lucide-react'
-import { useCampaignState } from '../hooks/useCampaignState'
+import { useCampaignState, DEFAULT_STATE } from '../hooks/useCampaignState'
 
 function Counter({ label, value, onIncrement, onDecrement, min, max }) {
   return (
@@ -89,11 +89,12 @@ export default function StatePage() {
     addDeckCard, removeDeckCard,
   } = useCampaignState()
 
-  if (loading) return <p className="p-6 text-zinc-500 text-sm">Loading...</p>
-  if (error) return <p className="p-6 text-red-400 text-sm">Error loading state.</p>
+  const st = state ?? DEFAULT_STATE
 
   return (
     <div className="p-4 space-y-8 max-w-2xl">
+      {loading && <p className="text-zinc-500 text-sm">Loading...</p>}
+      {error && <p className="text-red-400 text-sm">Error loading state.</p>}
 
       {/* Campaign overview */}
       <section>
@@ -101,24 +102,24 @@ export default function StatePage() {
         <div className="space-y-2">
           <Counter
             label="Month"
-            value={state.month}
+            value={st.month}
             min={1} max={12}
-            onIncrement={() => updateField('month', state.month + 1)}
-            onDecrement={() => updateField('month', state.month - 1)}
+            onIncrement={() => state && updateField('month', st.month + 1)}
+            onDecrement={() => state && updateField('month', st.month - 1)}
           />
           <Counter
             label="Funding Track"
-            value={state.fundingTrack}
+            value={st.fundingTrack}
             min={0} max={99}
-            onIncrement={() => updateField('fundingTrack', state.fundingTrack + 1)}
-            onDecrement={() => updateField('fundingTrack', state.fundingTrack - 1)}
+            onIncrement={() => state && updateField('fundingTrack', st.fundingTrack + 1)}
+            onDecrement={() => state && updateField('fundingTrack', st.fundingTrack - 1)}
           />
           <Counter
             label="Outbreaks"
-            value={state.outbreakCount}
+            value={st.outbreakCount}
             min={0} max={8}
-            onIncrement={() => updateField('outbreakCount', state.outbreakCount + 1)}
-            onDecrement={() => updateField('outbreakCount', state.outbreakCount - 1)}
+            onIncrement={() => state && updateField('outbreakCount', st.outbreakCount + 1)}
+            onDecrement={() => state && updateField('outbreakCount', st.outbreakCount - 1)}
           />
         </div>
       </section>
@@ -127,7 +128,7 @@ export default function StatePage() {
       <section>
         <SectionHeader title="Cities" />
         <div className="space-y-3">
-          {Object.entries(state.cities).map(([city, stickers]) => (
+          {Object.entries(st.cities).map(([city, stickers]) => (
             <div key={city} className="bg-zinc-900 rounded-xl p-3 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-zinc-200">{city}</span>
@@ -140,8 +141,8 @@ export default function StatePage() {
                 </button>
               </div>
               <div className="flex flex-wrap gap-1">
-                {stickers.map(s => (
-                  <Tag key={s} label={s} onRemove={() => removeSticker(city, s)} />
+                {stickers.map(sticker => (
+                  <Tag key={sticker} label={sticker} onRemove={() => removeSticker(city, sticker)} />
                 ))}
               </div>
               <AddInput
@@ -159,7 +160,7 @@ export default function StatePage() {
         <SectionHeader title="Funded Events" />
         <div className="space-y-2">
           <div className="flex flex-wrap gap-2">
-            {state.fundedEvents.map(e => (
+            {st.fundedEvents.map(e => (
               <Tag key={e} label={e} onRemove={() => removeFundedEvent(e)} />
             ))}
           </div>
@@ -174,7 +175,7 @@ export default function StatePage() {
           <div>
             <p className="text-xs text-zinc-600 mb-2">Added to deck</p>
             <div className="flex flex-wrap gap-2 mb-2">
-              {state.deckAdded.map(c => (
+              {st.deckAdded.map(c => (
                 <Tag key={c} label={c} onRemove={() => removeDeckCard(c, 'added')} />
               ))}
             </div>
@@ -183,7 +184,7 @@ export default function StatePage() {
           <div>
             <p className="text-xs text-zinc-600 mb-2">Removed from deck</p>
             <div className="flex flex-wrap gap-2 mb-2">
-              {state.deckRemoved.map(c => (
+              {st.deckRemoved.map(c => (
                 <Tag key={c} label={c} onRemove={() => removeDeckCard(c, 'removed')} />
               ))}
             </div>

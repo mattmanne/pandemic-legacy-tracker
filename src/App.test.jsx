@@ -58,9 +58,10 @@ describe('App shell — navigation', () => {
     expect(screen.getAllByText('Matt').length).toBeGreaterThan(0)
   })
 
-  it('shows campaign log placeholder by default', () => {
+  it('shows campaign log on / route', () => {
     renderAppWithPlayer('/')
-    expect(screen.getByText('Campaign Log — coming soon')).toBeInTheDocument()
+    // Add Session button renders immediately (before Firebase loads)
+    expect(screen.getByRole('button', { name: /add session/i })).toBeInTheDocument()
   })
 
   it('shows state page on /state route', () => {
