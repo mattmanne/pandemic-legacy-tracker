@@ -27,15 +27,34 @@ A companion tool for a group playing Pandemic Legacy Season 0. Built to be share
 ## Folder structure
 ```
 pandemic-legacy-tracker/
-├── CLAUDE.md              # This file — project context for Claude
-├── README.md              # User-facing overview
-├── .gitignore
+├── CLAUDE.md
+├── README.md
+├── index.html
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+├── postcss.config.js
+├── playwright.config.js
+├── .env.example            # Copy to .env.local and fill in Firebase values
 ├── docs/
-│   ├── game-reference.md  # Season 0 mechanics captured as group plays (no spoilers)
-│   └── decisions.md       # Architecture/design decisions log
-├── src/                   # App source (created when stack is decided)
+│   ├── decisions.md
+│   ├── requirements.md
+│   └── game-reference.md
+├── src/
+│   ├── main.jsx            # React entry point (HashRouter)
+│   ├── App.jsx             # App shell, routing, responsive layout
+│   ├── App.test.jsx
+│   ├── PlayerContext.jsx   # Player identity — stored in localStorage
+│   ├── PlayerContext.test.jsx
+│   ├── PlayerPicker.jsx    # First-visit modal to choose player
+│   ├── PlayerPicker.test.jsx
+│   ├── firebase.js         # Firebase init (reads from .env.local)
+│   ├── index.css           # Tailwind base + dark theme
+│   └── test-setup.js       # localStorage mock + jest-dom
 └── tests/
-    └── README.md          # Testing philosophy and approach
+    ├── README.md
+    └── e2e/
+        └── smoke.spec.js   # Playwright smoke tests
 ```
 
 ## Conventions
@@ -51,14 +70,34 @@ pandemic-legacy-tracker/
 4. Ask the user what they want to tackle next.
 
 ## Current status (as of 2026-06-28)
-**Stack decided. In planning phase — writing requirements before building.**
+**In progress: Phase 2 — Campaign State Tracker. Blocked on Firebase setup.**
 
-- [x] GitHub setup complete — https://github.com/mattmanne/pandemic-legacy-tracker
-- [x] Stack and architecture decided (see decisions.md)
-- [ ] Requirements written (in progress)
-- [ ] App scaffolded
-- [ ] Features built (requirements-driven, test-first)
-- [ ] GitHub Pages enabled once index.html exists
+### Build phases
+- [x] Phase 0 — Scaffold (React + Vite + Firebase + Vitest + Playwright + Tailwind, dark theme, routing shell)
+- [x] Phase 1 — App shell & navigation (player picker, responsive layout, bottom nav / sidebar)
+- [ ] **Phase 2 — Campaign State Tracker** ← next
+- [ ] Phase 3 — Character & Player Tracker
+- [ ] Phase 4 — Campaign Log
+- [ ] Phase 5 — Rules Reference
+
+### Test suite
+- **18 unit tests** passing (Vitest + happy-dom)
+- **15 e2e tests** passing (Playwright — mobile Chrome, mobile Safari, tablet)
+
+### Firebase setup — INCOMPLETE
+User needs to finish this before Phase 2 real-time sync can work.
+Steps completed:
+- [x] Firebase project created at console.firebase.google.com (with Google Analytics — fine)
+- [ ] Add web app to project (click </> icon on Project Overview page)
+- [ ] Enable Firestore database (Build → Firestore Database → Create database → test mode)
+- [ ] Copy config values into `.env.local` (copy from `.env.example`)
+
+Resume Firebase setup: user left off needing to find "Project Overview" in the left sidebar to get to the platform icon screen.
+
+### Other
+- [x] GitHub repo live — https://github.com/mattmanne/pandemic-legacy-tracker
+- [x] Requirements documented — docs/requirements.md
+- [ ] GitHub Pages enabled (deferred until app is ready to share)
 
 **Important:** Git identity is set at the project level only (`--local`). Do not change it to `--global` — user has separate HBS git account for other projects.
 
