@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import App from './App'
 
@@ -10,37 +10,71 @@ function renderApp(initialRoute = '/') {
   )
 }
 
-describe('App shell', () => {
-  it('renders the app title', () => {
+function renderAppWithPlayer(initialRoute = '/') {
+  localStorage.setItem('player', 'Matt')
+  return renderApp(initialRoute)
+}
+
+describe('App shell — player picker', () => {
+  beforeEach(() => localStorage.clear())
+
+  it('shows player picker when no player is stored', () => {
     renderApp()
-    expect(screen.getByText('Pandemic Legacy')).toBeInTheDocument()
+    expect(screen.getByText('Who are you?')).toBeInTheDocument()
   })
 
-  it('renders all four navigation items', () => {
+  it('shows all four player names in the picker', () => {
     renderApp()
-    expect(screen.getByText('Log')).toBeInTheDocument()
-    expect(screen.getByText('State')).toBeInTheDocument()
-    expect(screen.getByText('Characters')).toBeInTheDocument()
-    expect(screen.getByText('Rules')).toBeInTheDocument()
+    expect(screen.getByText('Carlos')).toBeInTheDocument()
+    expect(screen.getByText('Jen')).toBeInTheDocument()
+    expect(screen.getByText('Michelle')).toBeInTheDocument()
+    expect(screen.getByText('Matt')).toBeInTheDocument()
+  })
+
+  it('dismisses picker and shows app after selecting a player', () => {
+    renderApp()
+    fireEvent.click(screen.getByText('Carlos'))
+    expect(screen.queryByText('Who are you?')).not.toBeInTheDocument()
+    expect(screen.getAllByText('Pandemic Legacy').length).toBeGreaterThan(0)
+  })
+
+  it('skips picker when player is already stored', () => {
+    renderAppWithPlayer()
+    expect(screen.queryByText('Who are you?')).not.toBeInTheDocument()
+    expect(screen.getAllByText('Pandemic Legacy').length).toBeGreaterThan(0)
+  })
+})
+
+describe('App shell — navigation', () => {
+  beforeEach(() => localStorage.clear())
+
+  it('renders the app title', () => {
+    renderAppWithPlayer()
+    expect(screen.getAllByRole('heading', { name: 'Pandemic Legacy' }).length).toBeGreaterThan(0)
+  })
+
+  it('shows active player name', () => {
+    renderAppWithPlayer()
+    expect(screen.getAllByText('Matt').length).toBeGreaterThan(0)
   })
 
   it('shows campaign log placeholder by default', () => {
-    renderApp('/')
+    renderAppWithPlayer('/')
     expect(screen.getByText('Campaign Log — coming soon')).toBeInTheDocument()
   })
 
   it('shows state placeholder on /state route', () => {
-    renderApp('/state')
+    renderAppWithPlayer('/state')
     expect(screen.getByText('Campaign State — coming soon')).toBeInTheDocument()
   })
 
   it('shows characters placeholder on /characters route', () => {
-    renderApp('/characters')
+    renderAppWithPlayer('/characters')
     expect(screen.getByText('Characters — coming soon')).toBeInTheDocument()
   })
 
   it('shows rules placeholder on /rules route', () => {
-    renderApp('/rules')
+    renderAppWithPlayer('/rules')
     expect(screen.getByText('Rules — coming soon')).toBeInTheDocument()
   })
 })
