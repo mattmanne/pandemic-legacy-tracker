@@ -84,15 +84,11 @@ pandemic-legacy-tracker/
 - **18 unit tests** passing (Vitest + happy-dom)
 - **15 e2e tests** passing (Playwright — mobile Chrome, mobile Safari, tablet)
 
-### Firebase setup — INCOMPLETE
-User needs to finish this before Phase 2 real-time sync can work.
-Steps completed:
-- [x] Firebase project created at console.firebase.google.com (with Google Analytics — fine)
-- [ ] Add web app to project (click </> icon on Project Overview page)
-- [ ] Enable Firestore database (Build → Firestore Database → Create database → test mode)
-- [ ] Copy config values into `.env.local` (copy from `.env.example`)
-
-Resume Firebase setup: user left off needing to find "Project Overview" in the left sidebar to get to the platform icon screen.
+### Firebase setup — COMPLETE
+- [x] Firebase project created (with Google Analytics — fine)
+- [x] Web app registered (`pandemic-legacy-tracker`)
+- [x] Firestore database created (test mode, us-east1)
+- [x] `.env.local` filled in with real config values
 
 ### Other
 - [x] GitHub repo live — https://github.com/mattmanne/pandemic-legacy-tracker

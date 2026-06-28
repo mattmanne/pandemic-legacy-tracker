@@ -63,9 +63,10 @@ describe('App shell — navigation', () => {
     expect(screen.getByText('Campaign Log — coming soon')).toBeInTheDocument()
   })
 
-  it('shows state placeholder on /state route', () => {
+  it('shows state page on /state route', () => {
     renderAppWithPlayer('/state')
-    expect(screen.getByText('Campaign State — coming soon')).toBeInTheDocument()
+    // StatePage renders while connecting to Firebase
+    expect(screen.getByText('Loading...')).toBeInTheDocument()
   })
 
   it('shows characters placeholder on /characters route', () => {

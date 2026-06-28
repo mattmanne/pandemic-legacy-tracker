@@ -22,7 +22,7 @@ test('app loads and shows navigation after selecting a player', async ({ page })
 test('navigates to state page', async ({ page }) => {
   await selectPlayer(page)
   await page.getByRole('link', { name: 'State' }).click()
-  await expect(page.getByText('Campaign State — coming soon')).toBeVisible()
+  await expect(page.getByText('Month')).toBeVisible()
 })
 
 test('navigates to characters page', async ({ page }) => {
