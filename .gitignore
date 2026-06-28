@@ -21,6 +21,11 @@ build/
 .DS_Store
 Thumbs.db
 
+# Playwright
+playwright-report/
+test-results/
+.playwright/
+
 # Logs
 *.log
 npm-debug.log*
