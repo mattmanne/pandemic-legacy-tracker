@@ -8,22 +8,21 @@ A companion tool for a group playing Pandemic Legacy Season 0. Built to be share
 |----------|-------|-------|
 | Game | Pandemic Legacy Season 0 | Cold War-era prequel; different mechanics from S1/S2/S3 |
 | Spoiler policy | Strict: none | Tool must never surface content for months the group hasn't reached |
-| Sharing target | Friends / public | Will be pushed to GitHub; hosting TBD |
-| Platform | **TBD** | User will decide with group — likely a browser-based web app |
-| Core feature scope | **TBD** | User will decide with group |
+| Sharing target | Friends / public | Pushed to GitHub; GitHub Pages for hosting |
+| Platform | Browser app | React, real-time sync via Firebase |
+| Core feature scope | All of the above | Campaign log, state tracker, character tracker, rules reference |
+| Multi-device | Yes — everyone on their own device | Real-time sync required |
+| Backend/sync | Firebase (Firestore, free tier) | No server to manage; free tier sufficient |
+| Hosting | GitHub Pages + Firebase | Frontend on Pages, data on Firebase |
+| Frontend | React | Best Firebase ecosystem support |
+| Testing | Vitest + Playwright | Unit/logic + end-to-end |
+| UI theme | Dark | — |
 
-## Open questions (decide with user + group before building)
-1. **Platform** — Browser app (recommended for shareability), downloadable static page, or other?
-2. **Core use case** — Campaign state tracker? Character/player tracker? End-of-game log? Rules reference? All of the above?
-3. **Hosting** — GitHub Pages (free, easy) is the natural fit for a static web app. Confirm when platform is settled.
-4. **Multi-device** — Do all players use one shared device at the table, or each on their own? Affects whether we need sync/backend.
-5. **Tech stack** — Once platform is decided, choose framework (plain HTML/JS, React, Vue, etc.) and testing framework (Jest, Vitest, Playwright, etc.)
-
-## Stack (fill in when decided)
-- **Frontend:** TBD
-- **Backend:** Likely none (client-side only preferred for simplicity)
-- **Testing:** TBD — see `tests/README.md`
-- **CI:** TBD — GitHub Actions once pushed to GitHub
+## Stack
+- **Frontend:** React
+- **Backend:** Firebase (Firestore)
+- **Testing:** Vitest (unit) + Playwright (e2e)
+- **CI:** TBD — GitHub Actions once app is scaffolded
 
 ## Folder structure
 ```
@@ -52,21 +51,23 @@ pandemic-legacy-tracker/
 4. Ask the user what they want to tackle next.
 
 ## Current status (as of 2026-06-28)
-**GitHub setup complete. Ready to decide platform and features.**
+**Stack decided. In planning phase — writing requirements before building.**
 
-Steps completed:
-- [x] Step 0: GitHub account created (personal, mattmanne@gmail.com)
-- [x] Step 1: Git identity set locally for this repo (Matt Manne / mattmanne@gmail.com — local only, not global)
-- [x] Step 2: GitHub CLI (`gh`) installed via winget
-- [x] Step 3: Authenticated with `gh auth login` (logged in as mattmanne)
-- [x] Step 4: Repo created and pushed — https://github.com/mattmanne/pandemic-legacy-tracker
-- [ ] Step 5: Enable GitHub Pages (deferred until app has an index.html)
-
-Next step when resuming:
-- Decide platform and core features with the group (see open questions above)
-- Build the app once those decisions are made
+- [x] GitHub setup complete — https://github.com/mattmanne/pandemic-legacy-tracker
+- [x] Stack and architecture decided (see decisions.md)
+- [ ] Requirements written (in progress)
+- [ ] App scaffolded
+- [ ] Features built (requirements-driven, test-first)
+- [ ] GitHub Pages enabled once index.html exists
 
 **Important:** Git identity is set at the project level only (`--local`). Do not change it to `--global` — user has separate HBS git account for other projects.
+
+## Group details
+- **Players:** Carlos, Jen, Michelle, Matt (4 players)
+- **Characters:** TBD — user will add when available
+- **Current month:** TBD — user will update as they play
+- **Edit permissions:** Fully collaborative — all players can edit anything
+- **Devices:** Phone + tablet (mobile-first responsive design)
 
 ## Season 0 notes
 - Set in 1962, Cold War era.
