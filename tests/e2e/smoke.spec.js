@@ -3,10 +3,10 @@ import { test, expect } from '@playwright/test'
 test('app loads and shows navigation', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByText('Pandemic Legacy')).toBeVisible()
-  await expect(page.getByText('Log')).toBeVisible()
-  await expect(page.getByText('State')).toBeVisible()
-  await expect(page.getByText('Characters')).toBeVisible()
-  await expect(page.getByText('Rules')).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Log' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'State' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Characters' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Rules' })).toBeVisible()
 })
 
 test('navigates to state page', async ({ page }) => {
