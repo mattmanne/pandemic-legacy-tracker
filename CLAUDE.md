@@ -51,18 +51,20 @@ pandemic-legacy-tracker/
 3. Check git log (`git log --oneline -20`) for recent work.
 4. Ask the user what they want to tackle next.
 
-## Current status (as of 2026-06-27)
-**In progress: GitHub setup — Step 3 of 5 (authenticate with GitHub CLI)**
+## Current status (as of 2026-06-28)
+**GitHub setup complete. Ready to decide platform and features.**
 
 Steps completed:
 - [x] Step 0: GitHub account created (personal, mattmanne@gmail.com)
 - [x] Step 1: Git identity set locally for this repo (Matt Manne / mattmanne@gmail.com — local only, not global)
 - [x] Step 2: GitHub CLI (`gh`) installed via winget
+- [x] Step 3: Authenticated with `gh auth login` (logged in as mattmanne)
+- [x] Step 4: Repo created and pushed — https://github.com/mattmanne/pandemic-legacy-tracker
+- [ ] Step 5: Enable GitHub Pages (deferred until app has an index.html)
 
 Next step when resuming:
-- [ ] Step 3: Restart terminal, verify `gh --version` works, then run `gh auth login`
-- [ ] Step 4: Create GitHub repo and push (`gh repo create ...`)
-- [ ] Step 5: Enable GitHub Pages (deferred until app has an index.html)
+- Decide platform and core features with the group (see open questions above)
+- Build the app once those decisions are made
 
 **Important:** Git identity is set at the project level only (`--local`). Do not change it to `--global` — user has separate HBS git account for other projects.
 
